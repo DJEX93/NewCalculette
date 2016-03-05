@@ -412,12 +412,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void CClick (){
         //TODO trouver la bonne formule pour virer  juste un chiffre
-        clicOperateur = false;
-        update = true;
-        chiffre1 = 0;
-        operateur = "";
-        ecran.setText("0");
+        //clicOperateur = false; // TODO a viré pour ne pas reseter le calcule sur un appuye C
+        //update = true;
+        //  operateur = "";
+        String tampon = ecran.getText().toString();
+        tampon = tampon.substring(0, tampon.length()-1);
+        ecran.setText(tampon); //// TODO: 05/03/2016 à Travailler
     }
+        //recup = mot.substring(0mot.length()-2);
 
     //Méthode qui fait le calcul qui a été demandé par l'utilisateur
     private void calcul(){
