@@ -275,7 +275,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Action du bouton chiffre
                 //TODO trouver la bonne formule
-                egalClick();
+                PCClick();
 
             }
 
@@ -412,12 +412,25 @@ public class MainActivity extends AppCompatActivity {
 
     public void CClick (){
         //TODO trouver la bonne formule pour virer  juste un chiffre
-        //clicOperateur = false; // TODO a viré pour ne pas reseter le calcule sur un appuye C
+        //clicOperateur = false; //
         //update = true;
         //  operateur = "";
         String tampon = ecran.getText().toString();
         tampon = tampon.substring(0, tampon.length()-1);
         ecran.setText(tampon); //// TODO: 05/03/2016 à Travailler
+    }
+
+    public void PCClick (){
+        //TODO trouver la bonne formule pour virer  juste un chiffre
+        if(clicOperateur){
+            calcul();
+            ecran.setText(String.valueOf(chiffre1));
+        }else{
+            chiffre1 = Double.valueOf(ecran.getText().toString()).doubleValue();
+            clicOperateur = true;
+        }
+        operateur = "%";
+        update = true;
     }
         //recup = mot.substring(0mot.length()-2);
 
@@ -451,6 +464,19 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
+
+        if(operateur.equals("%")){
+            try{
+                chiffre1 = chiffre1 * Double.valueOf(ecran.getText().toString()).doubleValue()/100;
+                ecran.setText(String.valueOf(chiffre1));
+            }catch(ArithmeticException e){
+                ecran.setText("0");
+                Toast toastMessage = Toast.makeText(this, "Division par zéro impossible", Toast.LENGTH_LONG);
+                toastMessage.show();
+
+            }
+        }
+
 
 
 
