@@ -232,8 +232,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Action du bouton chiffre
-                //TODO trouver la bonne formule pour virer  juste un chiffre
-                resetClick();
+
+                CClick();
 
             }
 
@@ -407,7 +407,16 @@ public class MainActivity extends AppCompatActivity {
         update = true;
         chiffre1 = 0;
         operateur = "";
-        ecran.setText("");
+        ecran.setText("0");
+    }
+
+    public void CClick (){
+        //TODO trouver la bonne formule pour virer  juste un chiffre
+        clicOperateur = false;
+        update = true;
+        chiffre1 = 0;
+        operateur = "";
+        ecran.setText("0");
     }
 
     //Méthode qui fait le calcul qui a été demandé par l'utilisateur
