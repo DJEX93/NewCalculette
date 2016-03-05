@@ -1,5 +1,5 @@
+// D'apres Axon Tuto Mobile
 package com.mhb.newcalculette;
-
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -8,6 +8,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -231,6 +232,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Action du bouton chiffre
+                //TODO trouver la bonne formule pour virer  juste un chiffre
                 resetClick();
 
             }
@@ -399,7 +401,7 @@ public class MainActivity extends AppCompatActivity {
         clicOperateur = false;
     }
 
-    //voici la méthode qui est  exécutée lorsque l'on clique sur le bouton C
+    //Méthode qui est  exécutée lorsque l'on clique sur le bouton C
     public void resetClick (){
         clicOperateur = false;
         update = true;
@@ -408,7 +410,7 @@ public class MainActivity extends AppCompatActivity {
         ecran.setText("");
     }
 
-    //Voici la méthode qui fait le calcul qui a été demandé par l'utilisateur
+    //Méthode qui fait le calcul qui a été demandé par l'utilisateur
     private void calcul(){
         if(operateur.equals("+")){
             chiffre1 = chiffre1 + Double.valueOf(ecran.getText().toString()).doubleValue();
@@ -433,6 +435,9 @@ public class MainActivity extends AppCompatActivity {
                 ecran.setText(String.valueOf(chiffre1));
             }catch(ArithmeticException e){
                 ecran.setText("0");
+                Toast toastMessage = Toast.makeText(this, "Division par zéro impossible", Toast.LENGTH_LONG);
+                toastMessage.show();
+
             }
         }
 
