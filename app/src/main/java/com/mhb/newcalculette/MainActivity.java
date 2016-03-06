@@ -264,7 +264,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //Action du bouton chiffre
                 //TODO trouver la bonne formule
-                egalClick();
+                PMClick();
 
             }
 
@@ -432,7 +432,14 @@ public class MainActivity extends AppCompatActivity {
         operateur = "%";
         update = true;
     }
-        //recup = mot.substring(0mot.length()-2);
+
+    public void PMClick () {
+        //todo Method à finir
+
+    }
+
+
+
 
     //Méthode qui fait le calcul qui a été demandé par l'utilisateur
     private void calcul(){
@@ -480,6 +487,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
     }
 
 
@@ -502,7 +511,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            System.exit(0);
         }
 
         return super.onOptionsItemSelected(item);
