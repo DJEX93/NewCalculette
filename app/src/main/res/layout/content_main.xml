@@ -28,7 +28,8 @@
         android:maxLines="1"
         android:singleLine="true"
         android:scrollIndicators="left|right"
-        android:textIsSelectable="true" />
+        android:textIsSelectable="true"
+        android:scrollbars="horizontal" />
 
     <HorizontalScrollView
         android:layout_width="wrap_content"
@@ -76,6 +77,19 @@
                 android:id="@+id/buttonDel"
                 android:layout_row="0"
                 android:layout_column="3"
+                android:clickable="false"
+                android:background="@drawable/roundboutton"
+                android:textSize="40dp"
+                android:longClickable="true"
+                android:layout_margin="1dp" />
+
+            <Button
+                android:layout_width="79dp"
+                android:layout_height="78dp"
+                android:text="€"
+                android:id="@+id/buttonEUR"
+                android:layout_row="0"
+                android:layout_column="4"
                 android:clickable="false"
                 android:background="@drawable/roundboutton"
                 android:textSize="40dp"
@@ -145,6 +159,19 @@
             <Button
                 android:layout_width="79dp"
                 android:layout_height="78dp"
+                android:text="$"
+                android:id="@+id/buttonUSD"
+                android:layout_row="1"
+                android:layout_column="4"
+                android:clickable="false"
+                android:background="@drawable/roundboutton"
+                android:textSize="40dp"
+                android:longClickable="true"
+                android:layout_margin="1dp" />
+
+            <Button
+                android:layout_width="79dp"
+                android:layout_height="78dp"
                 android:text="4"
                 android:id="@+id/button4"
                 android:layout_row="2"
@@ -190,17 +217,9 @@
                 android:layout_margin="1dp"
                 android:text="X" />
 
-            <Button
-                android:layout_width="79dp"
-                android:layout_height="78dp"
-                android:text="1"
-                android:id="@+id/button1"
-                android:layout_row="3"
-                android:layout_column="0"
-                android:clickable="false"
-                android:background="@drawable/roundboutton"
-                android:textSize="40dp"
-                android:layout_margin="1dp" />
+
+
+
 
             <Button
                 android:layout_width="79dp"
@@ -241,6 +260,18 @@
             <Button
                 android:layout_width="79dp"
                 android:layout_height="78dp"
+                android:text="₪"
+                android:id="@+id/buttonILS"
+                android:layout_row="2"
+                android:layout_column="4"
+                android:clickable="false"
+                android:background="@drawable/roundboutton"
+                android:textSize="40dp"
+                android:layout_margin="1dp" />
+
+            <Button
+                android:layout_width="79dp"
+                android:layout_height="78dp"
                 android:text="0"
                 android:id="@+id/button0"
                 android:layout_row="4"
@@ -257,6 +288,18 @@
                 android:id="@+id/buttonPoint"
                 android:layout_row="4"
                 android:layout_column="1"
+                android:clickable="false"
+                android:background="@drawable/roundboutton"
+                android:textSize="40dp"
+                android:layout_margin="1dp" />
+
+            <Button
+                android:layout_width="79dp"
+                android:layout_height="78dp"
+                android:text="1"
+                android:id="@+id/button1"
+                android:layout_row="3"
+                android:layout_column="0"
                 android:clickable="false"
                 android:background="@drawable/roundboutton"
                 android:textSize="40dp"
@@ -285,6 +328,21 @@
                 android:background="@drawable/roundboutton"
                 android:textSize="40dp"
                 android:layout_margin="1dp" />
+
+            <Button
+                android:layout_width="79dp"
+                android:layout_height="78dp"
+                android:text="JD"
+                android:id="@+id/buttonJOD"
+                android:layout_row="3"
+                android:layout_column="4"
+                android:clickable="false"
+                android:background="@drawable/roundboutton"
+                android:textSize="40dp"
+                android:longClickable="true"
+                android:layout_margin="1dp" />
+
+
 
         </GridLayout>
     </HorizontalScrollView>

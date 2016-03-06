@@ -1,5 +1,6 @@
 // D'apres Axon Tuto Mobile
 package com.mhb.newcalculette;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,6 +33,12 @@ public class MainActivity extends AppCompatActivity {
     Button buttonDel;
     Button buttonPM;
     Button buttonPC;
+    Button buttonILS;
+    Button buttonJOD;
+    Button buttonUSD;
+    Button buttonEUR;
+
+
     TextView ecran;
 
 
@@ -67,7 +74,12 @@ public class MainActivity extends AppCompatActivity {
         buttonDel = (Button) findViewById(R.id.buttonDel);
         buttonPM = (Button) findViewById(R.id.buttonPM);
         buttonPC = (Button) findViewById(R.id.buttonPC);
+        buttonILS = (Button) findViewById(R.id.buttonILS);
+        buttonJOD = (Button) findViewById(R.id.buttonJOD);
+        buttonUSD = (Button) findViewById(R.id.buttonUSD);
+        buttonEUR = (Button) findViewById(R.id.buttonEUR);
         ecran = (TextView) findViewById(R.id.ecran);
+
 
 
 
