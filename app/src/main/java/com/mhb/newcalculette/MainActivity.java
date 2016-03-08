@@ -1,5 +1,7 @@
 // D'apres Axon Tuto Mobile
+//http://www.economie.gouv.fr/dgfip/taux_chancellerie_change_resultat/pays/PS
 package com.mhb.newcalculette;
+
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -32,13 +34,28 @@ public class MainActivity extends AppCompatActivity {
     Button buttonDel;
     Button buttonPM;
     Button buttonPC;
-    TextView ecran;
+    Button buttonILS;
+    Button buttonJOD;
+    Button buttonUSD;
+    Button buttonEUR;
 
+    TextView ecran;
 
     double chiffre1;
     boolean clicOperateur = false;
+    boolean clicDevise = false;
     boolean update = false;
     String operateur = "";
+    double txchancellerie= 0.233;
+    int deviseFrom = 0;
+    int deviseTo = 0;
+    int deviseSelector = 0;
+
+    String[] txUSD = new String[]{"99","0,911286281","3,90879988","0,709548"};
+    String[] txEUR = new String[]{"1.09735","99","4,28932155","0,777554"};
+    String[] txILS = new String[]{"0,255833","0,233137103","99","0,181385241"};
+    String[] txJD = new String[] {"1,41044","1,28531462","5,5131277","99"};
+    String[][] tx = {{"99","0.911286281", "3.90879988", "0.709548"}, {"1.09735", "99", "4.28932155", "0.777554"},{"0.255833", "0.233137103", "99", "0.181385241"},{"1.41044", "1.28531462", "5.5131277", "99" }};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,7 +84,14 @@ public class MainActivity extends AppCompatActivity {
         buttonDel = (Button) findViewById(R.id.buttonDel);
         buttonPM = (Button) findViewById(R.id.buttonPM);
         buttonPC = (Button) findViewById(R.id.buttonPC);
+        buttonILS = (Button) findViewById(R.id.buttonILS);
+        buttonJOD = (Button) findViewById(R.id.buttonJOD);
+        buttonUSD = (Button) findViewById(R.id.buttonUSD);
+        buttonEUR = (Button) findViewById(R.id.buttonEUR);
         ecran = (TextView) findViewById(R.id.ecran);
+
+
+
 
 
 
@@ -191,7 +215,7 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener Plus = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Action du bouton chiffre
+                //Action du bouton +
                 plusClick();
 
             }
@@ -201,7 +225,7 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener Moins = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Action du bouton chiffre
+                //Action du bouton -
                 moinsClick();
 
             }
@@ -211,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener Div = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Action du bouton chiffre
+                //Action du bouton /
                 divClick();
 
             }
@@ -221,7 +245,7 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener Mul = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Action du bouton chiffre
+                //Action du bouton *
                 mulClick();
 
             }
@@ -231,7 +255,7 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener Clear = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Action du bouton chiffre
+                //Action du bouton "c"
 
                 CClick();
 
@@ -242,7 +266,7 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener Egal = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Action du bouton chiffre
+                //Action du bouton =
                 egalClick();
 
             }
@@ -252,7 +276,7 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener Del = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Action du bouton chiffre
+                //Action du bouton del
                 resetClick();
 
             }
@@ -262,9 +286,9 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener PM = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Action du bouton chiffre
+                //Action du bouton +/-
                 //TODO trouver la bonne formule
-                egalClick();
+                PMClick();
 
             }
 
@@ -273,10 +297,51 @@ public class MainActivity extends AppCompatActivity {
         View.OnClickListener PC = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Action du bouton chiffre
-                //TODO trouver la bonne formule
+                //Action du bouton %
+
                 PCClick();
 
+            }
+
+        };
+
+        View.OnClickListener USD = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Action du bouton USD
+                deviseSelector = 0;
+                DeviseClick();
+            }
+
+        };
+
+        View.OnClickListener EUR = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Action du bouton USD
+                deviseSelector = 1;
+
+                DeviseClick();
+            }
+
+        };
+
+        View.OnClickListener ILS = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Action du bouton USD
+                deviseSelector = 2;
+                DeviseClick();
+            }
+
+        };
+
+        View.OnClickListener JOD = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //Action du bouton USD
+                deviseSelector = 3;
+                DeviseClick();
             }
 
         };
@@ -311,6 +376,11 @@ public class MainActivity extends AppCompatActivity {
         buttonDel.setOnClickListener(Del);
         buttonPM.setOnClickListener(PM);
         buttonPC.setOnClickListener(PC);
+        buttonUSD.setOnClickListener(USD);
+        buttonEUR.setOnClickListener(EUR);
+        buttonILS.setOnClickListener(ILS);
+        buttonJOD.setOnClickListener(JOD);
+
 
 
 
@@ -355,7 +425,7 @@ public class MainActivity extends AppCompatActivity {
         update = true;
     }
 
-    //Méthode qui est  exécutée lorsque l'on clique sur le bouton -
+    //Méthode qui est exécutée lorsque l'on clique sur le bouton -
     public void moinsClick (){
         if(clicOperateur){
             calcul();
@@ -404,6 +474,7 @@ public class MainActivity extends AppCompatActivity {
     //Méthode qui est  exécutée lorsque l'on clique sur le bouton C
     public void resetClick (){
         clicOperateur = false;
+        clicDevise = false;
         update = true;
         chiffre1 = 0;
         operateur = "";
@@ -432,7 +503,34 @@ public class MainActivity extends AppCompatActivity {
         operateur = "%";
         update = true;
     }
-        //recup = mot.substring(0mot.length()-2);
+
+    public void PMClick () {
+        //todo Method à finir
+
+    }
+
+    public void DeviseClick () {
+
+        if(clicDevise) {
+            deviseTo = deviseSelector;
+            double resxult;
+            resxult = Double.valueOf(ecran.getText().toString()).doubleValue() * Double.parseDouble(tx[deviseFrom][deviseTo]) ;
+            ecran.setText(String.valueOf(resxult));
+            deviseFrom = deviseSelector;
+            //TODO A SUPPR
+        } else {
+            deviseFrom = deviseSelector ;
+
+            ecran.setText(ecran.getText().toString());
+            clicDevise = true;
+
+
+        }
+
+    }
+
+
+
 
     //Méthode qui fait le calcul qui a été demandé par l'utilisateur
     private void calcul(){
@@ -480,6 +578,8 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
     }
 
 
@@ -502,7 +602,7 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
-            return true;
+            System.exit(0);
         }
 
         return super.onOptionsItemSelected(item);
